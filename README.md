@@ -68,6 +68,7 @@ The receiver keeps track of all incoming strokes and manages the display menu vi
 
 2.1 Receiver Code
 
+```javascript
 // Variables to store the counts for each movement
 let swingCount = 0
 let backhandCount = 0
