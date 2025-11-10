@@ -63,7 +63,7 @@ ml.onStart(ml.event.Smash, function () {
     basic.showString("SMH")
 })
 
-2. Receiver Setup (Counter & Display)
+### 2. Receiver Setup (Counter & Display)
 The receiver keeps track of all incoming strokes and manages the display menu via the micro:bit buttons.
 
 2.1 Receiver Code
