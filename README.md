@@ -7,7 +7,7 @@ The system is designed to track four specific badminton strokes/states that were
 ## ⚙️ System Components & Roles
 
 | Component | Role | Required Code/Setup | 
-| :--- | :--- | :--- | 
+ | ----- | ----- | ----- | 
 | **Transmitter** | **Motion Detector (AI)**: Worn on the racket or hand. It runs the trained Machine Learning model to detect movement and sends a unique radio signal upon classification. | **Trained ML Model** (`.hex` file) + **Transmitter JavaScript** | 
 | **Receiver** | **Counter & Display**: Used as a static display unit. It receives the radio signals, increments the specific stroke counter, plays a tone, and allows the user to view/reset the scores. | **Receiver JavaScript** | 
 
@@ -20,7 +20,7 @@ The transmitter must be flashed with a `.hex` file that contains the core MakeCo
 The system uses specific, unique numbers for reliable radio communication between the two devices.
 
 | Movement Class | Radio Number Sent | Tone on Receiver | 
-| :--- | :--- | :--- | 
+ | ----- | ----- | ----- | 
 | **Idle** | `1` | Low C (Note.C) | 
 | **Back Hand** | `10` | Mid E (Note.E) | 
 | **Swing** | `100` | Mid G (Note.G) | 
@@ -56,6 +56,17 @@ ml.onStart(ml.event.Swing, function () {
     radio.sendNumber(100)
     basic.showString("SWG")
 })
+
+// 4. Smash (Number: 1000)
+ml.onStart(ml.event.Smash, function () {
+    radio.sendNumber(1000)
+    basic.showString("SMH")
+})
+
+2. Receiver Setup (Counter & Display)
+The receiver keeps track of all incoming strokes and manages the display menu via the micro:bit buttons.
+
+2.1 Receiver Code
 
 // Variables to store the counts for each movement
 let swingCount = 0
@@ -160,10 +171,4 @@ input.onGesture(Gesture.Shake, function () {
     basic.showIcon(IconNames.No) // Visual confirmation of reset
     basic.pause(500)
     basic.clearScreen()
-})
-
-// 4. Smash (Number: 1000)
-ml.onStart(ml.event.Smash, function () {
-    radio.sendNumber(1000)
-    basic.showString("SMH")
 })
