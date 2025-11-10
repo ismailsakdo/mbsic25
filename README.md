@@ -63,10 +63,11 @@ ml.onStart(ml.event.Smash, function () {
     basic.showString("SMH")
 })
 
-### 2. Receiver Setup (Counter & Display)
+## 2. Receiver Setup (Counter & Display)
+
 The receiver keeps track of all incoming strokes and manages the display menu via the micro:bit buttons.
 
-2.1 Receiver Code
+### 2.1 Receiver Code
 
 ```javascript
 // Variables to store the counts for each movement
@@ -173,3 +174,13 @@ input.onGesture(Gesture.Shake, function () {
     basic.pause(500)
     basic.clearScreen()
 })
+
+## 3. How to Use the Counter
+
+| Action | Device | Result | 
+ | ----- | ----- | ----- | 
+| **Perform Stroke** | **Transmitter** | Model detects the movement, sends radio signal (e.g., 100). | 
+| **Received Signal** | **Receiver** | Plays distinct tone and briefly flashes the stroke icon. Counter increments by 1. | 
+| **Change Menu** | **Receiver Button B** | Cycles the display menu through **IDL** > **SWG** > **BHD** > **SMH**. | 
+| **View Count** | **Receiver Button A** | Displays the label and total count for the currently selected stroke (e.g., `SWG: 5`). | 
+| **Reset** | **Receiver Shake** (A+B) | Resets all four counters (`idleCount`, `swingCount`, etc.) to zero. |
